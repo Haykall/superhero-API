@@ -1,29 +1,22 @@
 
 # Load necessary libraries
 library(dplyr)
-library(httr)
-library(jsonlite)
 library(stringr)
 
 # Source API Key
-source("api-keys.R")
+source("get_data.R")
+
 
 # Given a character id return a map of of each organization for this character
 get_connections <- function(character_id) {
-  
-  base_uri <- "https://superheroapi.com/api"
-  
-  uri.full <- paste(base_uri, superhero_key, character_id, sep = "/")
-  
-  response <- GET(uri.full)
-  
-  # Parse with JSON
-  response_text <- content(response, "text")
-  response_data <- fromJSON(response_text)
+
+  response_data <- get_data(character_id)
   
   connections <- response_data$connections
   
   groups <- unlist(strsplit(connections$`group-affiliation`, split=", "))
+  
+  group_data <- tibble(entity = groups, relation = "Groups")
   
   relatives_raw <- connections$relatives
   
@@ -44,15 +37,12 @@ get_connections <- function(character_id) {
   
   relations <- gsub(", deceased", "", relations)
   
-  relative_data <- data_frame(relatives, relations)
+  relative_data <- tibble(entity = relatives, relation = "Relatives") %>%
+    mutate(entity = paste0(entity, " - ", relations))
   
-  relative_data
+  connection_data <- full_join(group_data, relative_data, by = c("entity", "relation"))
   
-  connections_data <- list(groups = groups, relatives = relative_data)
-  
+  connection_data 
 }
-
-
-
-
+  
 
