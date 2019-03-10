@@ -31,7 +31,6 @@ organizations <- function(id, collapse) {
 
 all_names <- get_all_names()
 
-
 ui <- fluidPage(
    titlePanel("Heroes and Their Connections"),
    selectInput(
@@ -40,13 +39,13 @@ ui <- fluidPage(
      choices = all_names,
      selected = all_names[1]
    ),
+   checkboxInput("collapsed", "Collapse the Tree?", TRUE),
    collapsibleTreeOutput(outputId = "tree")
 )
 
 server <- function(input, output) {
-   all_names <- get_all_names()
    output$tree <- renderCollapsibleTree({
-     return(organizations(match(input$names, all_names), FALSE))
+     return(organizations(match(input$names, all_names), input$collapsed))
      })
 }
 

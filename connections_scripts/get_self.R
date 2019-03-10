@@ -12,8 +12,19 @@ get_self <- function(character_id) {
   hero_name <- response_data$name
   real_name <- response_data$biography$`full-name`
   
-  display_name <- paste(real_name, hero_name, sep = " - ")
+  
+  
+  display_name <- ifelse(real_name != "",
+                         paste(real_name, hero_name, sep = " - "),
+                         hero_name)
+  
+  
+  display_name <- ifelse(real_name != hero_name,
+                         display_name,
+                         hero_name)
   
   display_name
   
 }
+
+get_self(1)

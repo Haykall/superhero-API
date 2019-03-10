@@ -9,9 +9,12 @@ get_all_names <- function() {
   
   names_list <- c()
   
-  for (i in 1:3) {
-    names_list[i] <- get_self(i)
-  }
+  names_list <- sapply(1:5, get_self)
+  
+  
+  # for (i in 1:3) {
+  #   names_list[i] <- get_self(i)
+  # }
   
   # for (i in 133:172) {
   #   names_list[i] <- get_self(i)
@@ -27,4 +30,3 @@ get_all_names <- function() {
   
   names_list
 }
-
