@@ -4,12 +4,13 @@ library(dplyr)
 library(stringr)
 
 # Source API Key
-source("get_data.R")
+source("connections_scripts/get_data.R")
 
 
 # Given a character id return a map of of each organization for this character
 get_connections <- function(character_id) {
 
+  #character_id <- 1
   response_data <- get_data(character_id)
   
   connections <- response_data$connections
@@ -21,8 +22,9 @@ get_connections <- function(character_id) {
   relatives_raw <- connections$relatives
   
   relatives <- gsub("\\s*\\([^\\)]+\\)","",as.character(relatives_raw))
-  relatives <- unlist(strsplit(relatives, split=", "))
+  relatives <- gsub(";", ",", relatives)
   
+  relatives <- unlist(strsplit(relatives, split=", "))
   relations <- gsub(
     "[\\(\\)]",
     "",
@@ -37,12 +39,15 @@ get_connections <- function(character_id) {
   
   relations <- gsub(", deceased", "", relations)
   
-  relative_data <- tibble(entity = relatives, relation = "Relatives") %>%
-    mutate(entity = paste0(entity, " - ", relations))
+  relative_data <- tibble(entity = relatives, relation = "Relatives") 
+  
+  new_entity = paste0(relative_data$entity, " - ", relations)
+  
+  relative_data <- relative_data %>% mutate(entity = new_entity)
   
   connection_data <- full_join(group_data, relative_data, by = c("entity", "relation"))
   
-  connection_data 
-}
-  
+ connection_data 
+} 
 
+  

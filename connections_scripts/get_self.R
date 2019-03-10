@@ -2,7 +2,7 @@ library(dplyr)
 library(stringr)
 
 # Source API Key
-source("get_data.R")
+source("connections_scripts/get_data.R")
 
 # Given a character's id, get their name
 get_self <- function(character_id) {
