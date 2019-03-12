@@ -7,6 +7,11 @@ library(stringr)
 # Source API Key
 source("api-keys.R")
 
+timed_GET <- function(uri) {
+  req <- GET(uri)
+  round(req$times * 1000)
+}
+
 # Get all of a character's data based on their id number
 get_data <- function(character_id) {
   
@@ -15,7 +20,7 @@ get_data <- function(character_id) {
   uri.full <- paste(base_uri, superhero_key, character_id, sep = "/")
   
   response <- GET(uri.full)
-  
+
   # Parse with JSON
   response_text <- content(response, "text")
   response_data <- fromJSON(response_text)
