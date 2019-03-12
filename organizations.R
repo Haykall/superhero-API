@@ -19,7 +19,15 @@ organizations <- function(id, collapse) {
     width = 800,
     zoomable = TRUE,
     root = get_self(character_id = id),
-    fill = "relation",
+    fill = c(
+      # The root
+      "#FF5E5B",
+      # Unique regions
+      rep("#00CECB", length(unique(hero_connections$relation))),
+      # Unique names per region
+      rep("#FFED66", length(unique(paste(hero_connections$entity, hero_connections$relation))))
+    ),
+    fillByLevel = TRUE,
     nodeSize = "leafCount",
     collapsed = collapse
     )  
@@ -50,6 +58,14 @@ server <- function(input, output) {
       
      if(input$names == "Batman") {
        hero_id <- 70
+     }
+     
+     if(input$names == "Atom") {
+       hero_id <- 50
+     }
+     
+     if(input$names == "Atlas") {
+       hero_id <- 48
      }
      
      print(hero_id)
