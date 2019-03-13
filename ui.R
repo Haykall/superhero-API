@@ -17,7 +17,25 @@ first_page <- tabPanel(
     ),
     mainPanel(
       h1("Introduction"),
-      p("We are a group of college students who are big fans of superheros.")
+      p("We are a group of college students who are big fans of superheros.In our team we have"),
+      h2("Where is Our Data From?"),
+      p("We will be working with the Superhero API. This API is a quantified 
+        and programatically accessible data source of all superheroes from
+        different comic universes. They’ve taken all the stuff and put
+        it together in a form that is easier to consume with software.
+        The data is accessible through a REST API. A Facebook account to
+        get your access token"),
+      h3("Research Questions"),
+      p("Our target audience are comic book fans and anyone who is a fan of superheroes and villains,
+        and just want to know more about them. We hope to help aspiring superheroes
+        and villains in preparing them on their journey in becoming a hero / villian.
+        Our audience is interested in learning everything about superheros, such as how 
+        they compare against each other and where they are found. We want to help our audience understand what it takes to be a superhero
+
+        Our audience wants to learn what it takes to become a superhero. We will address:
+        Mapping out each of the superhero and villain organization headquarters/ base to find out where most heroes / villians are mostly stationed, and where is the best place to be a superhero.
+        We will compare different heroes and villains with their power stats and abilities to see which hero / villain would win. This would help our audience understand which powers are the strongest and weakest, and what kind of abilities are best against other types of abilities.
+        Superheroes and villains have many organizations and affiliations.")
       )
   )
   )
@@ -40,7 +58,16 @@ second_page <- tabPanel(
         label = "Choose a type of alignment",
         choices = alignment_list
       ),
-      "WAHAHAHAH"
+      "Strength and Intelligence: 
+          
+      Two of the most common factors considered 
+      when analyzing the hierarchy of well known superheros. Compare how 
+      each female superhero stands against each other in terms of strength
+      and intelligence. You have the flexibility to search for an individual 
+      hero, or look within a certain range of strength. 
+      
+      You also have the ability to compare strength and intelligence 
+      between alignments."
     ),
     mainPanel(plotlyOutput("scatter"), plotOutput("scatter2"))
   )
