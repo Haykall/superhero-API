@@ -1,8 +1,10 @@
 # UI file
 library(shiny)
 library(plotly)
+library(collapsibleTree)
 
 source("Scatter_files/support.R")
+source("organizations.R")
 
 # Responsbile for the first page with two widgets controling one visualization
 # allowing users to change the race population shown and the opacity
@@ -44,6 +46,19 @@ second_page <- tabPanel(
   )
 )
 
+third_page <- tabPanel(
+  "Heros and Connections",
+  titlePanel("Heroes and Their Connections"),
+  selectInput(
+    "names",
+    label = "Choose a hero:",
+    choices = hero_names$names,
+    selected = hero_names$names[1]
+  ),
+  checkboxInput("collapsed", "Collapse the Tree?", TRUE),
+  collapsibleTreeOutput(outputId = "tree")
+)
+
 # Responsible for the second page with two widgets controling one visualization
 # allowing users to change the age group in pverty and the color of the points
 
@@ -52,5 +67,6 @@ second_page <- tabPanel(
 ui <- navbarPage(
   "Superhero API",
   first_page, 
-  second_page
+  second_page,
+  third_page
 )

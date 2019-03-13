@@ -4,10 +4,12 @@ library(ggplot2)
 library(plotly)
 library(dplyr)
 library(shiny)
+library(collapsibleTree)
 
 source("Scatter_files/support.R")
 source("scatter_files/heroscatter.R")
 source("scatter_files/build_scatter.R")
+source("organizations.R")
 
 # Server used to run the app
 server <- function(input, output) {
@@ -25,6 +27,21 @@ server <- function(input, output) {
     return(build_scatterplot(
       female, input$race
     ))
+  })
+  
+  output$tree <- renderCollapsibleTree({
+    hero_id <- hero_names[hero_names$names == input$names, ]$id
+    if(input$names == "Batman") {
+      hero_id <- 70
+    }
+    if(input$names == "Atom") {
+      hero_id <- 50
+    }
+    if(input$names == "Atlas") {
+      hero_id <- 48
+    }
+    print(hero_id)
+    return(organizations(hero_id, input$collapsed))
   })
 
 }
