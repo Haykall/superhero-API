@@ -1,62 +1,78 @@
-##Create an interactive map of the hero data 
-
+## Create an interactive map of the hero data
 source("api-keys.R")
 library("httr")
 library("jsonlite")
 library("dplyr")
 library("knitr")
+library("stringr")
+library("leaflet")
 
-
-
-#Created a for loop to retrieve individual character information from API
-resource <- "/biography"
+# Created a for loop to retrieve individual character information from API
+resource <- "biography"
 base_url <- "https://superheroapi.com/api/"
-result=data.frame()
-for (character_id in 1:731)
-{
-  endpoint <- paste0(base_url,superhero_key,"/",character_id,resource)
+result <- data.frame()
+for (character_id in 1:731){
+  endpoint <- paste0(base_url, superhero_key, "/", character_id, "/", resource)
   response <- GET(endpoint)
   body <- content(response, "text")
   parsed_data <- fromJSON(body)
   print(parsed_data)
-  #Creates a data frame for information about each superhero/villan and 
-  #Useful information that can be displayed on a map
-  result= rbind( result,data.frame(parsed_data$id,parsed_data$`full-name`,parsed_data$publisher,
-                                   parsed_data$`full-name`, parsed_data$`place-of-birth`))
-}
+  # Creates a data frame for information about each superhero/villan and
+  # Useful information that can be displayed on a map
+  result <- rbind(result, data.frame(
+    parsed_data$id, parsed_data$`full-name`, parsed_data$publisher,
+    parsed_data$`full-name`, parsed_data$`place-of-birth`, parsed_data$name
+  ))
+  }
 
-#Create a data frame that renames the columns to be neater and then filters for 
-#Marvel Comics characters ONLY to create the map
-marvel_frame <- result%>%
-  select(parsed_data.id, parsed_data..full.name.,parsed_data.publisher,parsed_data..place.of.birth.)%>%
-  rename( "ID"=parsed_data.id,"Full Name"= parsed_data..full.name.,
-         "Place of Birth"=parsed_data..place.of.birth., "Publisher"= parsed_data.publisher)%>%
-  filter(Publisher == "Marvel Comics")
-  
+# Create a data frame that renames the columns to be neater and then filters out
+# all NA values
+marvel_frame <- result %>%
+  select(
+    parsed_data.name, parsed_data.id, parsed_data..full.name.,
+    parsed_data.publisher, parsed_data..place.of.birth.
+  ) %>%
+  rename(
+    "ID" = parsed_data.id, "Name" = parsed_data.name,
+    "Full Name" = parsed_data..full.name.,
+    "Place of Birth" = parsed_data..place.of.birth.,
+    "Publisher" = parsed_data.publisher
+  ) %>%
+  filter(!grepl("-", `Place of Birth`))
 
+# Uses another data set with all US cities to find latitude and longitude of
+# Place of Birth column
+cities_frame <- read.csv("uscitiesv1.4.csv") %>%
+  select(city, state_name, lat, lng) %>%
+  mutate("Place of Birth" = paste0(city, ", ", state_name))
 
-make_impact_map <- leaflet(data = marvel_frame, width = "100%") %>%
+# Joins marvel frame and cities frame based on place of birth to match latitude
+# and longitude and
+# create final data frame to be used for 'super map'
+super_frame <- merge(marvel_frame, cities_frame,
+  by = "Place of Birth",
+  type = "inner"
+) %>%
+  select(`Place of Birth`, Name, `Full Name`, Publisher, lat, lng) %>%
+  rename(latitude = lat, longitude = lng)
+
+# Makes super hero map with circles plotted at place of birth locations and
+# a popup with interesting information about each of the characters
+make_super_map <- leaflet(data = super_frame, width = "100%") %>%
   addProviderTiles("CartoDB.Positron") %>%
   setView(lng = -101.584521, lat = 40.554970, zoom = 4.25) %>%
-  addLegend(
-    position = "topright",
-    title = "2018 Impact of Mass shootings in U.S",
-    pal = palette_fn,
-    values = ~ final_plot$impacted,
-    opacity = 1
-  ) %>%
   addCircles(
-    lat = final_plot$latitude,
-    lng = final_plot$longitude,
+    lat = super_frame$latitude,
+    lng = super_frame$longitude,
     popup = paste(
-      final_plot$city, "<br>",
-      "Number Killed:", final_plot$killed, "<br>",
-      "Number Injured:", final_plot$injured, "<br>",
-      "Total Affected:", final_plot$affected_people, "<br>",
-      "Total impact:", final_plot$impacted, "<br>"
+      super_frame, "<br>",
+      "Name", super_frame$Name, "<br>",
+      "Full Name", super_frame$`Full Name`, "<br>",
+      "Place of Birth", super_frame$`Place of Birth`, "<br>",
+      "Publisher", super_frame$Publisher, "<br>"
     ),
-    color = ~ palette_fn(final_plot$impacted),
-    radius = sizing,
+    color = ~"Reds",
+    radius = 10000,
     stroke = FALSE,
     fillOpacity = 1
   )
