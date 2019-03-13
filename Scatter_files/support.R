@@ -1,7 +1,7 @@
 
 library("dplyr")
 
-df <- read.csv('femalechart.csv', stringsAsFactors = FALSE)
+df <- read.csv('Scatter_files/femalechart.csv', stringsAsFactors = FALSE)
 
 female <- df %>% select(intelligence, strength, name, race, alignment) 
 df_range <- range(0:100)
