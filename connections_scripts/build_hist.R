@@ -13,7 +13,3 @@ build_hist <- function(data, superhero1, superhero2, x = "Superhero", y = "Stats
     geom_bar(aes(fill = name), stat = "identity", position = "dodge")
   build
 }
-
-dat.g <- gather(test, type, value, -name)
-ggplot(dat.g, aes(type, value)) + 
-  geom_bar(aes(fill = name), stat = "identity", position = "dodge")
