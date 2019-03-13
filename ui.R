@@ -38,7 +38,16 @@ second_page <- tabPanel(
         label = "Choose a type of alignment",
         choices = alignment_list
       ),
-      "WAHAHAHAH"
+      "Strength and Intelligence: 
+          
+      Two of the most common factors considered 
+      when analyzing the hierarchy of well known superheros. Compare how 
+      each female superhero stands against each other in terms of strength
+      and intelligence. You have the flexibility to search for an individual 
+      hero, or look within a certain range of strength. 
+      
+      You also have the ability to compare strength and intelligence 
+      between alignments."
     ),
     mainPanel(plotlyOutput("scatter"), plotOutput("scatter2"))
   )
