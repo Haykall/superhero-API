@@ -10,11 +10,11 @@ library(stringr)
 source("connections_scripts/build_hist.R")
 data <- read.csv("connections_scripts/comparison.csv")
 
-shinyUI(navbarPage(
+ui <- shinyUI(navbarPage(
   tabPanel(
     "Histogram",
     # Add a titlePanel to your tab
-    titlePanel("Comparing Superheros"),
+    titlePanel("Comparing Superhero Power Statistics"),
     # Create a sidebarPanel for your controls
     sidebarPanel(
       # Make a textInput widget for searching for a state in the scatter
@@ -31,9 +31,9 @@ shinyUI(navbarPage(
 )
 )
 
-##SERVER
+##SERVERs
 # Start shinyServer
-shinyServer(function(input, output) { 
+server <- shinyServer(function(input, output) { 
   
   #Creates a histogram based on the data
   output$hist <- renderPlot({
