@@ -52,6 +52,30 @@ server <- function(input, output) {
     if(input$names == "Captain Marvel") {
       hero_id <- 157
     }
+    if(input$names == "Spider-Man") {
+      hero_id <- 620
+    }
+    if(input$names == "Batgirl") {
+      hero_id <- 63
+    }
+    if(input$names == "Black Canary") {
+      hero_id <- 97
+    }
+    if(input$names == "Blizzard") {
+      hero_id <- 116
+    }
+    if(input$names == "Blue Beetle") {
+      hero_id <- 123
+    }
+    if(input$names == "Goliath") {
+      hero_id <- 290
+    }
+    if(input$names == "Nova") {
+      hero_id <- 496
+    }
+    if(input$names == "Toxin") {
+      hero_id <- 671
+    }
     
     return(organizations(hero_id, input$collapsed))
    })

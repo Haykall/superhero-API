@@ -5,8 +5,8 @@ account: j1lin0101
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 790167
-bundleId: 1940118
+bundleId: 1940151
 url: https://j1lin0101.shinyapps.io/superhero-API/
-when: 1552584581.48151
+when: 1552585555.05859
 asMultiple: FALSE
 asStatic: FALSE
