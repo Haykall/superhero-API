@@ -2,7 +2,7 @@
 library("dplyr")
 
 #calling the csv file with super hero data
-df <- read.csv('Scatter_files/femalechart.csv', stringsAsFactors = FALSE)
+df <- read.csv('scatter_files/femalechart.csv', stringsAsFactors = FALSE)
 
 #filtering data to show specific power stats
 female <- df %>% select(intelligence, strength, name, race, alignment) 

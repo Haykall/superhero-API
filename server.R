@@ -45,6 +45,9 @@ server <- function(input, output) {
     if(input$names == "Atlas") {
       hero_id <- 48
     }
+    if(input$names == "Captain Marvel") {
+      hero_id <- 157
+    }
     
     return(organizations(hero_id, input$collapsed))
    })
