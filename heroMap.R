@@ -6,9 +6,7 @@ library("dplyr")
 library("knitr")
 library("stringr")
 library("leaflet")
-
-# Created a for loop to retrieve individual character information from API
-source("locations.csv")
+source("connections_scripts/locations.csv")
 
 # Create a data frame that renames the columns to be neater and then filters out
 # all NA values.
