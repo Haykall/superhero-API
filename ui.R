@@ -10,17 +10,16 @@ source("organizations.R")
 
 data <- read.csv("connections_scripts/comparison.csv")
 
-# Responsbile for the first page with two widgets controling one visualization
-# allowing users to change the race population shown and the opacity
+# Responsbile for the first page which welcomes the users to the page
 first_page <- tabPanel(
   "Welcome",
   titlePanel("Superhero Data Analysis"),
   mainPanel(
     h1("Introduction"),
-    p("We are a group of college students who are big fans of superheros.In our team we have George Zhang,
+    p("We are a group of college students who are big fans of superheroes. In our team we have George Zhang,
       Jessica Prasetyo, Zarah Khan, Jeremey Lin, and Haykal Mubin. "),
     h2("Where is Our Data From?"),
-    p("We worked with the Superhero API. This API is a quantified and programatically
+    p("We worked with the Superhero API. This API is a quantified and programmatically
       accessible data source of all superheroes from different comic universes. They’ve taken
       all the stuff and put it together in a form that is easier to consume with software. The
       data is accessible through a REST API. A Facebook account to get your access token the link
@@ -29,35 +28,36 @@ first_page <- tabPanel(
     h2("Research Questions"),
     p("Our target audience are comic book fans and anyone who is a fan of superheroes and villains,
       and just want to know more about them. We hope to help aspiring superheroes
-      and villains in preparing them on their journey in becoming a hero / villian.
-      Our audience is interested in learning everything about superheros, such as how 
+      and villains in preparing them on their journey in becoming a hero / villain.
+      Our audience is interested in learning everything about superheroes, such as how 
       they compare against each other and where they are found. We want to help our audience
       understand what it takes to be a superhero
       ")
     ),
-    h3("Female Hero Scatterplot"),
-  p("This plot displays plots that compare female heros with their strength and intelligence levels.
-    You can search for a shero and identify where they lie on the plot and adjust the range of hero 
-    strength. Hovering over the Intellegence vs. Strength points will show the name of the Hero, alignment
-    strength, and intellegence. You can also pick a plot by alignment which displays the Strength vs
-    Intellegence for that alignment. These plots help identify which female heros are most strong and
-    intellegent."),
-  h3("Heros and Their Connections"),
-  p("We wanted to make sure our audience was able to understand the context of the lives these heros live.
-    For that reason we created a collapsable tree which allows the visualization of the organizations
-    and people that these heros are associated with. There is a selection bar for the hero and the tree can
+  h3("Female Hero Scatterplot"),
+  p("This plot displays plots that compare female heroes with their strength and intelligence levels.
+    You can search for a hero and identify where they lie on the plot and adjust the range of hero 
+    strength. Hovering over the Intelligence vs. Strength points will show the name of the Hero, alignment
+    strength, and intelligence. You can also pick a plot by alignment which displays the Strength vs
+    Intelligence for that alignment. These plots help identify which female heroes are most strong and
+    intelligent."),
+  h3("Heroes and Their Connections"),
+  p("We wanted to make sure our audience was able to understand the context of the lives these heroes live.
+    For that reason, we created a collapsible tree which allows the visualization of the organizations
+    and people that these heroes are associated with. There is a selection bar for the hero and the tree can
     be collapsed to reveal the people."),
-  h3("Comparing Heros Histogram"),
-  p("A natural question someone might have when thinking about superheros has to do with the comparison of
-    powers from different heros. Thus we created a histogram that displays various aspects of a hero and
-    allows users to select two heros that they want to compare."),
+  h3("Comparing Heroes Histogram"),
+  p("A natural question someone might have when thinking about superheroes has to do with the comparison of
+    powers from different heroes. Thus, we created a histogram that displays various aspects of a hero and
+    allows users to select two heroes that they want to compare."),
   h3("Hero Birthplace Map"),
-  p("Where do the heros that we admire so much come from? This visualization represents points that the 
-    heros were born in within the United States. Each point on the map show the birthplace of a hero,
+  p("Where do the heroes that we admire so much come from? This visualization represents points that the 
+    heroes were born in within the United States. Each point on the map show the birthplace of a hero,
     hovering over the data points will reveal the Name, Full Name, Place of Birth, and Publisher of the hero.
-    You can select a publisher which will show heros produced by the publisher selected.")
+    You can select a publisher which will show heroes produced by the publisher selected.")
   )
 
+# Creating the second tab page for female hero strengths
 second_page <- tabPanel(
   "Female Hero Scatterplot",
   titlePanel("Scatterplot"),
@@ -91,6 +91,7 @@ second_page <- tabPanel(
   )
 )
 
+# Collapsable tree connections tab code
 third_page <- tabPanel(
   "Heros and Connections",
   titlePanel("Heroes and Their Connections"),
@@ -104,6 +105,7 @@ third_page <- tabPanel(
   collapsibleTreeOutput(outputId = "tree")
 )
 
+# Comparison histogram page display
 fourth_page <- tabPanel(
   "Histogram",
   # Add a titlePanel to your tab
@@ -122,6 +124,7 @@ fourth_page <- tabPanel(
   )
 )
 
+# Controls the webpage for the Hero Map Visualization
 fifth_page <- tabPanel(
   "Hero Map",
   # Add a titlePanel to your tab
@@ -139,11 +142,7 @@ fifth_page <- tabPanel(
 )
 
 
-# Responsible for the second page with two widgets controling one visualization
-# allowing users to change the age group in pverty and the color of the points
-
-
-# Describes the loyout of the webpage
+# Describes the layout of the webpage
 ui <- navbarPage(theme = shinytheme("united"),
   "Superhero API",
   first_page, 
