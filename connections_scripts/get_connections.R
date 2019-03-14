@@ -39,15 +39,9 @@ get_connections <- function(character_id) {
   
   relations <- gsub(", deceased", "", relations)
   
-  View(relations)
-  
   relative_data <- tibble(entity = relatives, relation = "Relatives") 
   
-  View(relative_data$entity)
-  
   new_entity = paste0(relative_data$entity, " - ", relations)
-  
-  View(new_entity)
   
   connection_data <- full_join(group_data, relative_data, by = c("entity", "relation"))
   
