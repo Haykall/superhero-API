@@ -54,7 +54,7 @@ server <- function(input, output) {
   })
   
   output$map <- renderLeaflet({
-    return(make_super_map)
+    return(make_super_map(input$publisher))
   })
 
 }

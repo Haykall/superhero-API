@@ -108,6 +108,11 @@ fifth_page <- tabPanel(
   # Add a titlePanel to your tab
   titlePanel("Birthplaces of Superheros in the United States"),
   # Create a sidebarPanel for your controls,
+  sidebarPanel(
+    selectInput("publisher", label = "Choose a publisher:",
+                choices = list("DC Comics", "Marvel Comics")
+               )
+  ),
   # Create a main panel to show the histogram
   mainPanel(
     leafletOutput("map")

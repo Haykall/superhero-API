@@ -40,7 +40,12 @@ super_frame <- merge(marvel_frame, cities_frame,
 # a popup with interesting information about each of the characters
 
 
-make_super_map <- leaflet(data = super_frame, width = "100%") %>%
+make_super_map <- function(publisher) {
+  
+  super_frame <- super_frame %>%
+    filter(Publisher == publisher)
+  
+  leaflet(data = super_frame, width = "100%") %>%
   addProviderTiles("CartoDB.Positron") %>%
   setView(lng = -101.584521, lat = 40.554970, zoom = 4.25) %>%
   addCircles(
@@ -56,5 +61,6 @@ make_super_map <- leaflet(data = super_frame, width = "100%") %>%
     ),
     radius = 50000,
     stroke = FALSE,
-    fillOpacity = 50
+    fillOpacity = 0.6
   )
+}
