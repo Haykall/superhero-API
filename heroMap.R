@@ -38,21 +38,23 @@ super_frame <- merge(marvel_frame, cities_frame,
 
 # Makes super hero map with circles plotted at place of birth locations and
 # a popup with interesting information about each of the characters
+
+
 make_super_map <- leaflet(data = super_frame, width = "100%") %>%
   addProviderTiles("CartoDB.Positron") %>%
   setView(lng = -101.584521, lat = 40.554970, zoom = 4.25) %>%
   addCircles(
     lat = super_frame$latitude,
     lng = super_frame$longitude,
+    color = "steelblue",
     popup = paste(
-      super_frame, "<br>",
-      "Name", super_frame$Name, "<br>",
-      "Full Name", super_frame$`Full Name`, "<br>",
-      "Place of Birth", super_frame$`Place of Birth`, "<br>",
-      "Publisher", super_frame$Publisher, "<br>"
+      # super_frame, "<br>",
+      "Name: ", super_frame$Name, "<br>",
+      "Full Name: ", super_frame$`Full Name`, "<br>",
+      "Place of Birth: ", super_frame$`Place of Birth`, "<br>",
+      "Publisher: ", super_frame$Publisher, "<br>"
     ),
-    color = ~"Reds",
-    radius = 10000,
+    radius = 50000,
     stroke = FALSE,
-    fillOpacity = 1
+    fillOpacity = 50
   )

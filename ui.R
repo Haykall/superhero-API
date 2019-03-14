@@ -115,7 +115,6 @@ fifth_page <- tabPanel(
 )
 
 
-
 # Responsible for the second page with two widgets controling one visualization
 # allowing users to change the age group in pverty and the color of the points
 
