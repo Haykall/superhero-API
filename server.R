@@ -18,7 +18,7 @@ data <- read.csv("connections_scripts/comparison.csv")
 
 # Server used to run the app
 server <- function(input, output) {
-  # First page output, changes race and color
+  # First page output, changes which supehero and power range
   output$scatter <- renderPlotly({
     return(build_scatter(
       female,
@@ -28,14 +28,18 @@ server <- function(input, output) {
     ))
   })
   
+  # First page second output, changes hero alignment
   output$scatter2 <- renderPlot({
     return(build_scatterplot(
       female, input$race
     ))
   })
   
+  # Second page output, changes hero and whether the tree shoudl be collapsed
   output$tree <- renderCollapsibleTree({
     hero_id <- hero_names[hero_names$names == input$names, ]$id
+    
+    # Catch duplicate superheroes
     if(input$names == "Batman") {
       hero_id <- 70
     }
@@ -52,10 +56,12 @@ server <- function(input, output) {
     return(organizations(hero_id, input$collapsed))
    })
   
+  # Third page output, changes two heroes
   output$hist <- renderPlot({
     return(build_hist(data, input$hero1, input$hero2))
   })
   
+  # Fourth page output, changes publisher
   output$map <- renderLeaflet({
     return(make_super_map(input$publisher))
   })

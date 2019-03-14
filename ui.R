@@ -24,7 +24,8 @@ first_page <- tabPanel(
       all the stuff and put it together in a form that is easier to consume with software. The
       data is accessible through a REST API. A Facebook account to get your access token the link
       to the API is https://superheroapi.com. The R packages used for this project were: shiny, plotly
-      collapsibleTree, shinythemes, leaflet, ggplot2, and dplyr."),
+      collapsibleTree, shinythemes, leaflet, ggplot2, and dplyr. These allowed us to build beauitful and 
+      interactive plots and diagrams throughout our pages."),
     h2("Research Questions"),
     p("Our target audience are comic book fans and anyone who is a fan of superheroes and villains,
       and just want to know more about them. We hope to help aspiring superheroes
@@ -32,29 +33,29 @@ first_page <- tabPanel(
       Our audience is interested in learning everything about superheroes, such as how 
       they compare against each other and where they are found. We want to help our audience
       understand what it takes to be a superhero
-      ")
-    ),
-  h3("Female Hero Scatterplot"),
-  p("This plot displays plots that compare female heroes with their strength and intelligence levels.
-    You can search for a hero and identify where they lie on the plot and adjust the range of hero 
-    strength. Hovering over the Intelligence vs. Strength points will show the name of the Hero, alignment
-    strength, and intelligence. You can also pick a plot by alignment which displays the Strength vs
-    Intelligence for that alignment. These plots help identify which female heroes are most strong and
-    intelligent."),
-  h3("Heroes and Their Connections"),
-  p("We wanted to make sure our audience was able to understand the context of the lives these heroes live.
-    For that reason, we created a collapsible tree which allows the visualization of the organizations
-    and people that these heroes are associated with. There is a selection bar for the hero and the tree can
-    be collapsed to reveal the people."),
-  h3("Comparing Heroes Histogram"),
-  p("A natural question someone might have when thinking about superheroes has to do with the comparison of
-    powers from different heroes. Thus, we created a histogram that displays various aspects of a hero and
-    allows users to select two heroes that they want to compare."),
-  h3("Hero Birthplace Map"),
-  p("Where do the heroes that we admire so much come from? This visualization represents points that the 
-    heroes were born in within the United States. Each point on the map show the birthplace of a hero,
-    hovering over the data points will reveal the Name, Full Name, Place of Birth, and Publisher of the hero.
-    You can select a publisher which will show heroes produced by the publisher selected.")
+      "),
+    h3("Female Hero Scatterplot"),
+    p("This plot displays plots that compare female heroes with their strength and intelligence levels.
+      You can search for a hero and identify where they lie on the plot and adjust the range of hero 
+      strength. Hovering over the Intelligence vs. Strength points will show the name of the Hero, alignment
+      strength, and intelligence. You can also pick a plot by alignment which displays the Strength vs
+      Intelligence for that alignment. These plots help identify which female heroes are most strong and
+      intelligent."),
+    h3("Heroes and Their Connections"),
+    p("We wanted to make sure our audience was able to understand the context of the lives these heroes live.
+      For that reason, we created a collapsible tree which allows the visualization of the organizations
+      and people that these heroes are associated with. There is a selection bar for the hero and the tree can
+      be collapsed to reveal the people."),
+    h3("Comparing Heroes Histogram"),
+    p("A natural question someone might have when thinking about superheroes has to do with the comparison of
+      powers from different heroes. Thus, we created a histogram that displays various aspects of a hero and
+      allows users to select two heroes that they want to compare."),
+    h3("Hero Birthplace Map"),
+    p("Where do the heroes that we admire so much come from? This visualization represents points that the 
+      heroes were born in within the United States. Each point on the map show the birthplace of a hero,
+      hovering over the data points will reveal the Name, Full Name, Place of Birth, and Publisher of the hero.
+      You can select a publisher which will show heroes produced by the publisher selected.")
+    )
   )
 
 # Creating the second tab page for female hero strengths
@@ -107,7 +108,7 @@ third_page <- tabPanel(
 
 # Comparison histogram page display
 fourth_page <- tabPanel(
-  "Histogram",
+  "Power Comparision",
   # Add a titlePanel to your tab
   titlePanel("Comparing Superhero Power Statistics"),
   # Create a sidebarPanel for your controls
@@ -142,7 +143,7 @@ fifth_page <- tabPanel(
 )
 
 
-# Describes the layout of the webpage
+# Describes the layout and theme of the webpage
 ui <- navbarPage(theme = shinytheme("united"),
   "Superhero API",
   first_page, 

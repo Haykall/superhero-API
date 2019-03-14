@@ -9,9 +9,13 @@ source("connections_scripts/get_connections.R")
 source("connections_scripts/get_self.R")
 source("connections_scripts/get_all_names.R")
 
-
+#Input character id and whether the tree should be collapsed or not
 organizations <- function(id, collapse) {
+  
+  # Get all the characters connections from the API
   hero_connections <- get_connections(character_id = id)
+  
+  # Make a collapsible tree with this new data and sort it by type of relationship
   organization_tree <- collapsibleTree(
     hero_connections,
     hierarchy = c("relation", "entity"),
@@ -19,11 +23,8 @@ organizations <- function(id, collapse) {
     zoomable = TRUE,
     root = get_self(character_id = id),
     fill = c(
-      # The root
       "#FF5E5B",
-      # Unique regions
       rep("#00CECB", length(unique(hero_connections$relation))),
-      # Unique names per region
       rep("#FFED66",
           length(
             unique(
