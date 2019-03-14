@@ -26,7 +26,7 @@ for (character_id in 1:731){
   }
 
 # Create a data frame that renames the columns to be neater and then filters out
-# all NA values
+# all NA values.
 marvel_frame <- result %>%
   select(
     parsed_data.name, parsed_data.id, parsed_data..full.name.,
