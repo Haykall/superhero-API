@@ -11,11 +11,8 @@ source("connections_scripts/get_all_names.R")
 
 
 organizations <- function(id, collapse) {
-  
   hero_connections <- get_connections(character_id = id)
-  
   View(hero_connections)
-  
   organization_tree <- collapsibleTree(
     hero_connections,
     hierarchy = c("relation", "entity"),
@@ -28,13 +25,20 @@ organizations <- function(id, collapse) {
       # Unique regions
       rep("#00CECB", length(unique(hero_connections$relation))),
       # Unique names per region
-      rep("#FFED66", length(unique(paste(hero_connections$entity, hero_connections$relation))))
+      rep("#FFED66",
+          length(
+            unique(
+              paste(
+                hero_connections$entity, hero_connections$relation)
+              )
+            )
+        )
     ),
     fillByLevel = TRUE,
     nodeSize = "leafCount",
     collapsed = collapse
-    )  
-  
-  organization_tree %>% 
+  )
+
+  organization_tree %>%
     return()
 }
