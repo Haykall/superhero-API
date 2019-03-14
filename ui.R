@@ -2,6 +2,7 @@
 library(shiny)
 library(plotly)
 library(collapsibleTree)
+library(shinythemes)
 
 source("Scatter_files/support.R")
 source("organizations.R")
@@ -118,11 +119,12 @@ fifth_page <- tabPanel(
 
 
 # Describes the loyout of the webpage
-ui <- navbarPage(
+ui <- navbarPage(theme = shinytheme("united"),
   "Superhero API",
   first_page, 
   second_page,
   third_page,
   fourth_page,
-  fifth_page
+  fifth_page,
+  fluid = TRUE
 )

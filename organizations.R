@@ -12,7 +12,6 @@ source("connections_scripts/get_all_names.R")
 
 organizations <- function(id, collapse) {
   hero_connections <- get_connections(character_id = id)
-  View(hero_connections)
   organization_tree <- collapsibleTree(
     hero_connections,
     hierarchy = c("relation", "entity"),
