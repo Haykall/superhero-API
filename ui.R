@@ -3,10 +3,12 @@ library(shiny)
 library(plotly)
 library(collapsibleTree)
 library(shinythemes)
+library(leaflet)
 
 source("Scatter_files/support.R")
 source("organizations.R")
-# source("comparisonTool.R")
+
+data <- read.csv("connections_scripts/comparison.csv")
 
 # Responsbile for the first page with two widgets controling one visualization
 # allowing users to change the race population shown and the opacity

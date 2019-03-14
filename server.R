@@ -10,8 +10,11 @@ library(leaflet)
 source("Scatter_files/support.R")
 source("scatter_files/heroscatter.R")
 source("scatter_files/build_scatter.R")
+source("connections_scripts/build_hist.R")
 source("organizations.R")
 source("heroMap.R")
+
+data <- read.csv("connections_scripts/comparison.csv")
 
 # Server used to run the app
 server <- function(input, output) {

@@ -54,5 +54,4 @@ get_connections <- function(character_id) {
   connection_data 
 } 
 
-absorbing <- get_connections(6)
   
