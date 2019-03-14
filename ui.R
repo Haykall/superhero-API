@@ -17,26 +17,45 @@ first_page <- tabPanel(
   titlePanel("Superhero Data Analysis"),
   mainPanel(
     h1("Introduction"),
-    p("We are a group of college students who are big fans of superheros.In our team we have"),
+    p("We are a group of college students who are big fans of superheros.In our team we have George Zhang,
+      Jessica Prasetyo, Zarah Khan, Jeremey Lin, and Haykal Mubin. "),
     h2("Where is Our Data From?"),
-    p("We will be working with the Superhero API. This API is a quantified 
-      and programatically accessible data source of all superheroes from
-      different comic universes. They’ve taken all the stuff and put
-      it together in a form that is easier to consume with software.
-      The data is accessible through a REST API. A Facebook account to
-      get your access token"),
-    h3("Research Questions"),
+    p("We worked with the Superhero API. This API is a quantified and programatically
+      accessible data source of all superheroes from different comic universes. They’ve taken
+      all the stuff and put it together in a form that is easier to consume with software. The
+      data is accessible through a REST API. A Facebook account to get your access token the link
+      to the API is https://superheroapi.com. The R packages used for this project were: shiny, plotly
+      collapsibleTree, shinythemes, leaflet, ggplot2, and dplyr."),
+    h2("Research Questions"),
     p("Our target audience are comic book fans and anyone who is a fan of superheroes and villains,
       and just want to know more about them. We hope to help aspiring superheroes
       and villains in preparing them on their journey in becoming a hero / villian.
       Our audience is interested in learning everything about superheros, such as how 
-      they compare against each other and where they are found. We want to help our audience understand what it takes to be a superhero
-      
-      Our audience wants to learn what it takes to become a superhero. We will address:
-      Mapping out each of the superhero and villain organization headquarters/ base to find out where most heroes / villians are mostly stationed, and where is the best place to be a superhero.
-      We will compare different heroes and villains with their power stats and abilities to see which hero / villain would win. This would help our audience understand which powers are the strongest and weakest, and what kind of abilities are best against other types of abilities.
-      Superheroes and villains have many organizations and affiliations.")
-    )
+      they compare against each other and where they are found. We want to help our audience
+      understand what it takes to be a superhero
+      ")
+    ),
+    h3("Female Hero Scatterplot"),
+  p("This plot displays plots that compare female heros with their strength and intelligence levels.
+    You can search for a shero and identify where they lie on the plot and adjust the range of hero 
+    strength. Hovering over the Intellegence vs. Strength points will show the name of the Hero, alignment
+    strength, and intellegence. You can also pick a plot by alignment which displays the Strength vs
+    Intellegence for that alignment. These plots help identify which female heros are most strong and
+    intellegent."),
+  h3("Heros and Their Connections"),
+  p("We wanted to make sure our audience was able to understand the context of the lives these heros live.
+    For that reason we created a collapsable tree which allows the visualization of the organizations
+    and people that these heros are associated with. There is a selection bar for the hero and the tree can
+    be collapsed to reveal the people."),
+  h3("Comparing Heros Histogram"),
+  p("A natural question someone might have when thinking about superheros has to do with the comparison of
+    powers from different heros. Thus we created a histogram that displays various aspects of a hero and
+    allows users to select two heros that they want to compare."),
+  h3("Hero Birthplace Map"),
+  p("Where do the heros that we admire so much come from? This visualization represents points that the 
+    heros were born in within the United States. Each point on the map show the birthplace of a hero,
+    hovering over the data points will reveal the Name, Full Name, Place of Birth, and Publisher of the hero.
+    You can select a publisher which will show heros produced by the publisher selected.")
   )
 
 second_page <- tabPanel(
