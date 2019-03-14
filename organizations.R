@@ -9,6 +9,7 @@ source("connections_scripts/get_connections.R")
 source("connections_scripts/get_self.R")
 source("connections_scripts/get_all_names.R")
 
+
 organizations <- function(id, collapse) {
   
   hero_connections <- get_connections(character_id = id)
