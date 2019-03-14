@@ -11,14 +11,12 @@ library("leaflet")
 # all NA values.
 marvel_frame <- read.csv("connections_scripts/locations.csv", stringsAsFactors = FALSE) %>%
   select(
-    parsed_data.name, parsed_data.id, parsed_data..full.name.,
-    parsed_data.publisher, parsed_data..place.of.birth.
-  ) %>%
+    name, full.name, place.of.birth,publisher)%>%
   rename(
-    "ID" = parsed_data.id, "Name" = parsed_data.name,
-    "Full Name" = parsed_data..full.name.,
-    "Place of Birth" = parsed_data..place.of.birth.,
-    "Publisher" = parsed_data.publisher
+     "Name" = name,
+    "Full Name" = full.name,
+    "Place of Birth" = place.of.birth,
+    "Publisher" = publisher
   ) %>%
   filter(!grepl("-", `Place of Birth`))
 
