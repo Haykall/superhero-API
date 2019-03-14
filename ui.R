@@ -17,7 +17,7 @@ first_page <- tabPanel(
   mainPanel(
     h1("Introduction"),
     p("We are a group of college students who are big fans of superheroes. In our team we have George Zhang,
-      Jessica Prasetyo, Zarah Khan, Jeremey Lin, and Haykal Mubin. "),
+      Jessica Prasetyo, Zarah Khan, Jeremey Lin, and Haykal Mubin."),
     h2("Where is Our Data From?"),
     p("We worked with the Superhero API. This API is a quantified and programmatically
       accessible data source of all superheroes from different comic universes. They’ve taken
@@ -32,7 +32,7 @@ first_page <- tabPanel(
       and villains in preparing them on their journey in becoming a hero / villain.
       Our audience is interested in learning everything about superheroes, such as how 
       they compare against each other and where they are found. We want to help our audience
-      understand what it takes to be a superhero
+      understand what it takes to be a superhero.
       "),
     h3("Female Hero Scatterplot"),
     p("This plot displays plots that compare female heroes with their strength and intelligence levels.
