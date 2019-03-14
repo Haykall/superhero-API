@@ -6,11 +6,10 @@ library("dplyr")
 library("knitr")
 library("stringr")
 library("leaflet")
-source("connections_scripts/locations.csv")
 
 # Create a data frame that renames the columns to be neater and then filters out
 # all NA values.
-marvel_frame <- result %>%
+marvel_frame <- read.csv("connections_scripts/locations.csv", stringsAsFactors = FALSE) %>%
   select(
     parsed_data.name, parsed_data.id, parsed_data..full.name.,
     parsed_data.publisher, parsed_data..place.of.birth.
@@ -20,11 +19,12 @@ marvel_frame <- result %>%
     "Full Name" = parsed_data..full.name.,
     "Place of Birth" = parsed_data..place.of.birth.,
     "Publisher" = parsed_data.publisher
-  ) %>%filter(!grepl("-", `Place of Birth`))
+  ) %>%
+  filter(!grepl("-", `Place of Birth`))
 
 # Uses another data set with all US cities to find latitude and longitude of
 # Place of Birth column
-cities_frame <- read.csv("uscitiesv1.4.csv") %>%
+cities_frame <- read.csv("uscitiesv1.4.csv", stringsAsFactors = FALSE) %>%
   select(city, state_name, lat, lng) %>%
   mutate("Place of Birth" = paste0(city, ", ", state_name))
 
