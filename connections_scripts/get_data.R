@@ -5,7 +5,7 @@ library(jsonlite)
 library(stringr)
 
 # Source API Key
-source("/Users/haykal/desktop/superhero-API/api-keys.R")
+source("api-keys.R")
 
 timed_GET <- function(uri) {
   req <- GET(uri)

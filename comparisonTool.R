@@ -7,14 +7,14 @@ library(plotly)
 library(ggplot2)
 library(dplyr)
 library(stringr)
-source("build_hist.R")
+source("/Users/haykal/desktop/superhero-api/connections_scripts/build_hist.R")
 data <- read.csv("connections_scripts/comparison.csv")
 
 shinyUI(navbarPage(
   tabPanel(
     "Histogram",
     # Add a titlePanel to your tab
-    titlePanel("Comparing Asian Population Percentages Between States"),
+    titlePanel("Comparing Superheros"),
     # Create a sidebarPanel for your controls
     sidebarPanel(
       # Make a textInput widget for searching for a state in the scatter

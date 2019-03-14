@@ -10,6 +10,7 @@ source("Scatter_files/support.R")
 source("scatter_files/heroscatter.R")
 source("scatter_files/build_scatter.R")
 source("organizations.R")
+source("comparisonTool.R")
 
 # Server used to run the app
 server <- function(input, output) {
@@ -42,6 +43,7 @@ server <- function(input, output) {
     }
     print(hero_id)
     return(organizations(hero_id, input$collapsed))
-  })
+   })
+  
 
 }
