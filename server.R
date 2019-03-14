@@ -5,11 +5,13 @@ library(plotly)
 library(dplyr)
 library(shiny)
 library(collapsibleTree)
+library(leaflet)
 
 source("Scatter_files/support.R")
 source("scatter_files/heroscatter.R")
 source("scatter_files/build_scatter.R")
 source("organizations.R")
+source("heroMap.R")
 
 # Server used to run the app
 server <- function(input, output) {
@@ -44,5 +46,12 @@ server <- function(input, output) {
     return(organizations(hero_id, input$collapsed))
    })
   
+  output$hist <- renderPlot({
+    return(build_hist(data, input$hero1, input$hero2))
+  })
+  
+  output$map <- renderLeaflet({
+    return(make_super_map)
+  })
 
 }
