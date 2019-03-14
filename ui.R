@@ -82,6 +82,35 @@ third_page <- tabPanel(
   collapsibleTreeOutput(outputId = "tree")
 )
 
+fourth_page <- tabPanel(
+  "Histogram",
+  # Add a titlePanel to your tab
+  titlePanel("Comparing Superhero Power Statistics"),
+  # Create a sidebarPanel for your controls
+  sidebarPanel(
+    # Make a textInput widget for searching for a state in the scatter
+    selectInput("hero1", label = "Choose a Character",
+                choices = data$name, selected = data$name[1]),
+    selectInput("hero2", label = "Choose Second Character",
+                choices = data$name, selected = data$name[2])
+  ),
+  # Create a main panel to show the histogram
+  mainPanel(
+    plotOutput("hist")
+  )
+)
+
+fifth_page <- tabPanel(
+  "Hero Map",
+  # Add a titlePanel to your tab
+  titlePanel("Birthplaces of Superheros in the United States"),
+  # Create a sidebarPanel for your controls,
+  # Create a main panel to show the histogram
+  mainPanel(
+    leafletOutput("map")
+  )
+)
+
 
 
 # Responsible for the second page with two widgets controling one visualization
@@ -93,5 +122,7 @@ ui <- navbarPage(
   "Superhero API",
   first_page, 
   second_page,
-  third_page
+  third_page,
+  fourth_page,
+  fifth_page
 )
