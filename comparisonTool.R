@@ -7,7 +7,7 @@ library(plotly)
 library(ggplot2)
 library(dplyr)
 library(stringr)
-source("/Users/haykal/desktop/superhero-api/connections_scripts/build_hist.R")
+source("connections_scripts/build_hist.R")
 data <- read.csv("connections_scripts/comparison.csv")
 
 shinyUI(navbarPage(
