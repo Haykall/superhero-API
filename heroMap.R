@@ -8,22 +8,7 @@ library("stringr")
 library("leaflet")
 
 # Created a for loop to retrieve individual character information from API
-resource <- "biography"
-base_url <- "https://superheroapi.com/api/"
-result <- data.frame()
-for (character_id in 1:731){
-  endpoint <- paste0(base_url, superhero_key, "/", character_id, "/", resource)
-  response <- GET(endpoint)
-  body <- content(response, "text")
-  parsed_data <- fromJSON(body)
-  print(parsed_data)
-  # Creates a data frame for information about each superhero/villan and
-  # Useful information that can be displayed on a map
-  result <- rbind(result, data.frame(
-    parsed_data$id, parsed_data$`full-name`, parsed_data$publisher,
-    parsed_data$`full-name`, parsed_data$`place-of-birth`, parsed_data$name
-  ))
-  }
+source("locations.csv")
 
 # Create a data frame that renames the columns to be neater and then filters out
 # all NA values.
@@ -37,8 +22,7 @@ marvel_frame <- result %>%
     "Full Name" = parsed_data..full.name.,
     "Place of Birth" = parsed_data..place.of.birth.,
     "Publisher" = parsed_data.publisher
-  ) %>%
-  filter(!grepl("-", `Place of Birth`))
+  ) %>%filter(!grepl("-", `Place of Birth`))
 
 # Uses another data set with all US cities to find latitude and longitude of
 # Place of Birth column
