@@ -5,7 +5,7 @@ library(collapsibleTree)
 library(shinythemes)
 library(leaflet)
 
-source("Scatter_files/support.R")
+source("scatter_files/support.R")
 source("organizations.R")
 
 data <- read.csv("connections_scripts/comparison.csv")

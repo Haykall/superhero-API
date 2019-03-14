@@ -7,7 +7,7 @@ library(shiny)
 library(collapsibleTree)
 library(leaflet)
 
-source("Scatter_files/support.R")
+source("scatter_files/support.R")
 source("scatter_files/heroscatter.R")
 source("scatter_files/build_scatter.R")
 source("connections_scripts/build_hist.R")
